@@ -3,6 +3,6 @@
 public class StockChangeDto
 {
     public int ProductId { get; set; }
-    public int Quantity { get; set; } // siempre positivo
+    public int Quantity { get; set; } // Puede ser positivo o negativo
     public string? Note { get; set; }
 }

@@ -19,25 +19,34 @@ public class StockController : ControllerBase
 
     [HttpPost("receive")]
     public async Task<ActionResult> Receive([FromBody] StockChangeDto dto)
-        => await Apply(dto, StockMovementType.Receive, dto.Quantity);
+    {
+        if (dto.Quantity <= 0) return BadRequest("Quantity must be > 0.");
+        return await Apply(dto, StockMovementType.Receive, dto.Quantity);
+    }
 
     [HttpPost("issue")]
     public async Task<ActionResult> Issue([FromBody] StockChangeDto dto)
-        => await Apply(dto, StockMovementType.Issue, -dto.Quantity);
+    {
+        if (dto.Quantity <= 0) return BadRequest("Quantity must be > 0.");
+        return await Apply(dto, StockMovementType.Issue, -dto.Quantity);
+    }
 
     [HttpPost("adjust")]
     public async Task<ActionResult> Adjust([FromBody] StockChangeDto dto)
     {
-        // Ajuste puede ser + o - según lo quieras. Para mantenerlo simple:
-        // Usaremos Quantity positivo y Note indica el motivo.
-        // Si querés ajuste negativo, lo hacemos en el siguiente paso.
+        if (dto.Quantity == 0) return BadRequest("Quantity cannot be zero.");
+
+        // (Opcional recomendado)
+        // if (string.IsNullOrWhiteSpace(dto.Note))
+        //     return BadRequest("Note is required for stock adjustments.");
+
         return await Apply(dto, StockMovementType.Adjust, dto.Quantity);
     }
+
 
     private async Task<ActionResult> Apply(StockChangeDto dto, StockMovementType type, int quantityChange)
     {
         if (dto.ProductId <= 0) return BadRequest("ProductId is required.");
-        if (dto.Quantity <= 0) return BadRequest("Quantity must be > 0.");
 
         var productExists = await _db.Products.AnyAsync(p => p.Id == dto.ProductId);
         if (!productExists) return BadRequest("ProductId is invalid.");
