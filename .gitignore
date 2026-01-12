@@ -2,6 +2,9 @@
 bin/
 obj/
 
+# Visual Studio
+.vs/
+
 # Node
 node_modules/
 dist/
