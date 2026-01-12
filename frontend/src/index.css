@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 @layer base {
-  body {
-    @apply bg-gray-100 text-gray-900 antialiased;
-  }
+  :root { color-scheme: light; }
+  .dark { color-scheme: dark; }
+
+  body { @apply bg-slate-950 text-slate-100 antialiased; }
 }
