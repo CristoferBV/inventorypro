@@ -9,6 +9,9 @@ public class InventoryDbContext : DbContext
 
     public DbSet<Category> Categories => Set<Category>();
     public DbSet<Product> Products => Set<Product>();
+    public DbSet<Inventory> Inventories => Set<Inventory>();
+    public DbSet<StockMovement> StockMovements => Set<StockMovement>();
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -25,6 +28,15 @@ public class InventoryDbContext : DbContext
         modelBuilder.Entity<Product>()
             .Property(p => p.Price)
             .HasPrecision(12, 2);
+
+        modelBuilder.Entity<Inventory>()
+            .HasIndex(i => i.ProductId)
+            .IsUnique();
+
+        modelBuilder.Entity<StockMovement>()
+            .Property(m => m.Type)
+            .HasConversion<int>();
+
     }
 
 
