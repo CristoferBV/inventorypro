@@ -65,9 +65,11 @@ export default function Layout() {
         <div className="grid h-10 w-10 place-items-center rounded-xl bg-indigo-500/15 ring-1 ring-indigo-500/25">
           <span className="text-indigo-200 font-bold">IP</span>
         </div>
+
         <div className="leading-tight">
           <div className="text-sm font-semibold text-white">InventoryPro</div>
-          <div className="text-xs text-slate-400">Admin panel</div>
+          {/* ✅ más profesional y alineado al enfoque */}
+          <div className="text-xs text-slate-400">Warehouse Console</div>
         </div>
 
         {mobile && (
@@ -109,16 +111,10 @@ export default function Layout() {
               <NavLink
                 to={to}
                 className={({ isActive }) =>
-                  cn(
-                    NAV_LINK_BASE,
-                    isActive ? NAV_LINK_ACTIVE : NAV_LINK_INACTIVE
-                  )
+                  cn(NAV_LINK_BASE, isActive ? NAV_LINK_ACTIVE : NAV_LINK_INACTIVE)
                 }
               >
-                <Icon
-                  size={18}
-                  className="text-slate-300 group-hover:text-white"
-                />
+                <Icon size={18} className="text-slate-300 group-hover:text-white" />
                 <span>{label}</span>
               </NavLink>
             </li>
@@ -137,16 +133,10 @@ export default function Layout() {
               <NavLink
                 to={to}
                 className={({ isActive }) =>
-                  cn(
-                    NAV_LINK_BASE,
-                    isActive ? NAV_LINK_ACTIVE : NAV_LINK_INACTIVE
-                  )
+                  cn(NAV_LINK_BASE, isActive ? NAV_LINK_ACTIVE : NAV_LINK_INACTIVE)
                 }
               >
-                <Icon
-                  size={18}
-                  className="text-slate-300 group-hover:text-white"
-                />
+                <Icon size={18} className="text-slate-300 group-hover:text-white" />
                 <span>{label}</span>
               </NavLink>
             </li>
@@ -154,17 +144,7 @@ export default function Layout() {
         </ul>
       </nav>
 
-      {/* Footer */}
-      <div className="mt-auto px-4 py-4">
-        <div className="rounded-xl bg-white/5 p-3 ring-1 ring-white/10">
-          <div className="text-xs text-slate-300">
-            Backend: <span className="text-white/90">.NET API</span>
-          </div>
-          <div className="mt-1 text-[11px] text-slate-400">
-            https://localhost:7257
-          </div>
-        </div>
-      </div>
+      {/* ✅ Footer eliminado (ya no mostramos Backend ni localhost) */}
     </aside>
   );
 
@@ -213,25 +193,19 @@ export default function Layout() {
 
           {/* Content */}
           <main className="flex-1 p-6 lg:p-10">
-            {/* Header */}
+            {/* ✅ Header más profesional (y sin badge del API) */}
             <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <h1 className="text-xl font-semibold text-white">
-                  InventoryPro Admin
+                  InventoryPro — Import & Distribution Warehouse
                 </h1>
                 <p className="mt-1 text-sm text-slate-400">
-                  React + Tailwind + .NET — inventory, products and stock control
+                  Gestión de inventario para una bodega/distribuidora que importa productos desde EE. UU. hacia Costa Rica.
                 </p>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <span className="rounded-full bg-white/5 px-3 py-1 text-xs text-slate-200 ring-1 ring-white/10">
-                  API: https://localhost:7257
-                </span>
               </div>
             </div>
 
-            {/* ✅ Page container (opcionalmente limitamos SOLO el contenido) */}
+            {/* ✅ Page container */}
             <div className="w-full">
               <div className="rounded-2xl border border-white/10 bg-slate-900/30 p-6 shadow-[0_10px_35px_rgba(0,0,0,0.35)]">
                 <Outlet />
