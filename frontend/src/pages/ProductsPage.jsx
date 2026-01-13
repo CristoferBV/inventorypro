@@ -117,7 +117,7 @@ export default function ProductsPage() {
     setErr("");
     try {
       // Trae detalle (por si el list no trae todo)
-      const res = await ProductsApi.getById(row.id);
+      const res = await ProductsApi.get(row.id);
       const p = res.data;
 
       setForm({
@@ -390,13 +390,6 @@ export default function ProductsPage() {
                   {isEdit ? "Update the product information." : "Create a new product."}
                 </p>
               </div>
-              <button
-                onClick={closeModal}
-                disabled={saving}
-                className="rounded-lg bg-white/10 px-3 py-1 text-sm text-white ring-1 ring-white/10 hover:bg-white/15 disabled:opacity-50"
-              >
-                Close
-              </button>
             </div>
 
             <form onSubmit={onSave} className="space-y-4">
