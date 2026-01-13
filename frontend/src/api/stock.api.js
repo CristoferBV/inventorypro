@@ -1,7 +1,9 @@
-import { http } from "./http";
+import http from "./http";
+
+const base = "/api/stock";
 
 export const StockApi = {
-  receive: (payload) => http.post("/api/Stock/receive", payload),
-  issue: (payload) => http.post("/api/Stock/issue", payload),
-  adjust: (payload) => http.post("/api/Stock/adjust", payload),
+  receive: (payload) => http.post(`${base}/receive`, payload),
+  issue: (payload) => http.post(`${base}/issue`, payload),
+  adjust: (payload) => http.post(`${base}/adjust`, payload),
 };
